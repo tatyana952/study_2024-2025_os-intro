@@ -86,7 +86,7 @@ header-includes:
 1.  Открываю Midnight Commander
 
 (рис.1 [-@fig:001])
-![Команда mc](image/рис 1.png){#fig:001 width=70%}
+![Команда mc](image/рис1){#fig:001 width=70%}
 {#fig:001}
 
 (рис.2 [-@fig:002])
