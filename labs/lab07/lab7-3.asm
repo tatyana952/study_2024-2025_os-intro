@@ -1,13 +1,13 @@
  %include 'in_out.asm'
- section .data
+ section     .data
  msg1 db 'Введите B: ',0h
  msg2 db "Наибольшее число: ",0h
- A dd '20'
- C dd '50'
+ A dd '81'
+ C dd '72'
  section .bss
  max resb 10
  B resb 10
-  section .text
+  section    .text
  global _start
  _start:
  ;---------- Вывод сообщения 'Введите B: '
@@ -24,7 +24,7 @@
  ;---------- Записываем 'A' в переменную 'max'
  mov ecx,[A] ; 'ecx = A'
  mov [max],ecx ; 'max = A'
- ;----------Сравниваем 'A' и 'С' (как символы)
+ ;---------- Сравниваем 'A' и 'С' (как символы)
  cmp ecx,[C] ; Сравниваем 'A' и 'С'
  jg check_B ; если 'A>C', то переход на метку 'check_B',
  mov ecx,[C] ; иначе 'ecx = C'
@@ -37,7 +37,8 @@
  ;---------- Сравниваем 'max(A,C)' и 'B' (как числа)
  mov ecx,[max]
  cmp ecx,[B] ; Сравниваем 'max(A,C)' и 'B'
- jg fin ; если 'max(A,C)>B', то переход на 'fin',
+ jg fin
+ ; если 'max(A,C)>B', то переход на 'fin',
  mov ecx,[B] ; иначе 'ecx = B'
  mov [max],ecx
  ;---------- Вывод результата
