@@ -57,8 +57,6 @@ biblatexoptions:
 figureTitle: "Рис."
 tableTitle: "Таблица"
 listingTitle: "Листинг"
-lofTitle: "Список иллюстраций"
-lotTitle: "Список таблиц"
 lolTitle: "Листинги"
 ## Misc options
 indent: true
@@ -95,6 +93,7 @@ header-includes:
 1. Реализация подпрограмм в NASM
 
 Создаю каталог для выполнения лабораторной работы №9:
+
 
 (рис.1 [-@fig:001])
 ![Создание каталога](image/1){#fig:001 width=70%}
