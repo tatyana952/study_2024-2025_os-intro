@@ -1,11 +1,12 @@
+---
 ## Front matter
 title: "Отчет по лабораторной работе №4"
-subtitle: "Архитектура компьютера и операционные системы"
+subtitle: "Дисциплина:Архитектура компьютера и операционные системы"
 author: "Ванюшкина Татьяна Валерьевна"
 
 ## Generic otions
 lang: ru-RU
-toc-title: "Содержание"
+toc-title: "Продвинутое использование git"
 
 ## Bibliography
 bibliography: bib/cite.bib
@@ -24,8 +25,8 @@ documentclass: scrreprt
 polyglossia-lang:
   name: russian
   options:
-	- spelling=modern
-	- babelshorthands=true
+ - spelling=modern
+ - babelshorthands=true
 polyglossia-otherlangs:
   name: english
 ## I18n babel
@@ -65,7 +66,6 @@ header-includes:
   - \usepackage{indentfirst}
   - \usepackage{float} # keep figures where there are in the text
   - \floatplacement{figure}{H} # keep figures where there are in the text
-
 ---
 
 # Задание
