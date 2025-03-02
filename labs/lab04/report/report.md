@@ -1,12 +1,12 @@
 ---
 ## Front matter
-title: "Отчет по лабораторной работе №4"
+title: "Отчёт по лабораторной работе №4"
 subtitle: "Дисциплина:Архитектура компьютера и операционные системы"
 author: "Ванюшкина Татьяна Валерьевна"
 
 ## Generic otions
 lang: ru-RU
-toc-title: "Продвинутое использование git"
+toc-title: ""
 
 ## Bibliography
 bibliography: bib/cite.bib
@@ -25,8 +25,8 @@ documentclass: scrreprt
 polyglossia-lang:
   name: russian
   options:
- - spelling=modern
- - babelshorthands=true
+	- spelling=modern
+	- babelshorthands=true
 polyglossia-otherlangs:
   name: english
 ## I18n babel
@@ -67,6 +67,7 @@ header-includes:
   - \usepackage{float} # keep figures where there are in the text
   - \floatplacement{figure}{H} # keep figures where there are in the text
 ---
+
 
 # Задание
 Выполнить работу для тестового репозитория.
@@ -306,6 +307,7 @@ Gitflow Workflow предполагает выстраивание строго�
 # Выводы
 
 Я получила навыков правильной работы с репозиториями git.
+
 
 # Список литературы{.unnumbered}
 
