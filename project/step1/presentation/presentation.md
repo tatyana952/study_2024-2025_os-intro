@@ -1,8 +1,8 @@
 ---
 ## Front matter
 lang: ru-RU
-title: Отчет по итоговому проекту этап 1
-subtitle: Дисциплина: Архитектура ком
+title: Архитектура компьютера и операционные системы
+subtitle: Итоговый проект этап 1
 author:
   - Ванюшкина Т.В.
 institute:
@@ -202,7 +202,6 @@ theme: metropolis
 ```
 
 
-
 ## Код для формата `html`
 
 - Тема задаётся в файле `Makefile`
@@ -210,5 +209,4 @@ theme: metropolis
 ```make
 REVEALJS_THEME = beige 
 ```
-
 
