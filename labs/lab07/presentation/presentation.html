@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Ванюшкина Т.В.">
+  <title>Анализ файловой системы Linux. Команды для работы с файлами и каталогами</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freset%2Ecss" rel="stylesheet">
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freveal%2Ecss" rel="stylesheet">
+  <style>
+.reveal .sourceCode { 
+overflow: visible;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <link href="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Ftheme%2Fbeige%2Ecss" rel="stylesheet" id="theme">
+  
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Анализ файловой системы Linux. Команды для работы с
+файлами и каталогами</h1>
+  <p class="subtitle">Дисциплина:Архитектура компьютера и операционные
+системы</p>
+  <p class="author">Ванюшкина Т.В.</p>
+  <p class="institute">Российский университет дружбы народов, Москва,
+Россия</p>
+  <p class="date">26 марта 2025</p>
+</section>
+
+<section id="информация" class="slide level1">
+<h1>Информация</h1>
+<h2 id="докладчик">Докладчик</h2>
+<ul>
+<li>Ванюшкина Татьяна Валерьевна</li>
+<li>Группа НКАбд-01-24</li>
+<li>Российский университет дружбы народов</li>
+</ul>
+<h2 id="цели-и-задачи">Цели и задачи</h2>
+<ul>
+<li>Целью работы является ознакомление с файловой системой Linux,её
+структурой,именами и содержанием каталогов. Приобретение практических
+навыков по применению команд для работы с файлами и каталогами,по
+управлению процессами (и работами),по проверке использования диска и
+обслуживанию файловой системы</li>
+</ul>
+<h2 id="материалы-и-методы">Материалы и методы</h2>
+<ul>
+<li>Процессор <code>pandoc</code> для входного формата Markdown</li>
+<li>Результирующие форматы
+<ul>
+<li><code>pdf</code></li>
+<li><code>html</code></li>
+</ul></li>
+<li>Автоматизация процесса создания: <code>Makefile</code></li>
+</ul>
+</section>
+<section id="создание-презентации" class="slide level1">
+<h1>Создание презентации</h1>
+<h2 id="редактор-mc">редактор mc</h2>
+<p>Просматриваю информацию man и перехожу в редактор mc. Выполняю все
+примеры,приведённые в первой части описания лабораторной работы</p>
+<p>(рис.1 <span class="citation" data-cites="fig:001">[-@fig:001]</span>) <img data-src="image/1" id="fig:001" style="width:70.0%" alt="man" /> {#fig:001}</p>
+<p>(рис.2 <span class="citation" data-cites="fig:002">[-@fig:002]</span>) <img data-src="image/2" id="fig:002" style="width:70.0%" alt="mc" /> {#fig:002}</p>
+<h2 id="копирование-и-перемещение-файлов">Копирование и перемещение
+файлов</h2>
+<p>Копирую файл /usr/include/sys/io.h вдомашний каталоги назовите его
+equipment</p>
+<p>(рис.3 <span class="citation" data-cites="fig:003">[-@fig:003]</span>) <img data-src="image/3" id="fig:003" style="width:70.0%" alt="equipment" /> {#fig:003}</p>
+<p>В домашнем каталоге создаю директорию ~/ski.plases. и перемещаю файл
+equipment в каталог~/ski.plases.</p>
+<p>(рис.4 <span class="citation" data-cites="fig:004">[-@fig:004]</span>) <img data-src="image/4" id="fig:004" style="width:70.0%" alt="equipment" /> {#fig:004}</p>
+<h2 id="переименовывание">Переименовывание</h2>
+<p>Переименовываю файл ~/ski.plases/equipment в
+~/ski.plases/equiplist</p>
+<p>(рис.5 <span class="citation" data-cites="fig:005">[-@fig:005]</span>) <img data-src="image/5" id="fig:005" style="width:70.0%" alt="equiplist" /> {#fig:005}</p>
+<h2 id="создание-и-работа-с-новыми-файламми">Создание и работа с новыми
+файламми</h2>
+<p>Создаю в домашнем каталоге файл abc1 и копирую его в каталог
+~/ski.plases</p>
+<p>(рис.6 <span class="citation" data-cites="fig:006">[-@fig:006]</span>) <img data-src="image/6" id="fig:006" style="width:70.0%" alt="abc1" /> {#fig:006}</p>
+<p>(рис.7 <span class="citation" data-cites="fig:007">[-@fig:007]</span>) <img data-src="image/7" id="fig:007" style="width:70.0%" alt="equipment" /> {#fig:007}</p>
+<h2 id="файл-equipment">файл equipment</h2>
+<p>Создаю файл equipment в каталоге ~/ski.plases.</p>
+<p>(рис.8 <span class="citation" data-cites="fig:008">[-@fig:008]</span>) <img data-src="image/8" id="fig:008" style="width:70.0%" alt="equipment" /> {#fig:008}</p>
+<h2 id="перемещение-файлов-в-каталог-ski.plasesequipment.">Перемещение
+файлов в каталог ~/ski.plases/equipment.</h2>
+<p>Перемещаю файлы ~/ski.plases/equiplist и equiplist2 в каталог
+~/ski.plases/equipment.</p>
+<p>(рис.9 <span class="citation" data-cites="fig:009">[-@fig:009]</span>) <img data-src="image/9" id="fig:009" style="width:70.0%" alt="перемещение файлов" />
+{#fig:009}</p>
+<h2 id="каталог-newdir">Каталог newdir</h2>
+<p>(рис.10 <span class="citation" data-cites="fig:010">[-@fig:010]</span>) <img data-src="image/10" id="fig:010" style="width:70.0%" alt="newdir" /> {#fig:010}</p>
+<h2 id="chmod">chmod</h2>
+<p>Определяю опции команды chmod</p>
+<p>(рис.11 <span class="citation" data-cites="fig:011">[-@fig:011]</span>) <img data-src="image/11" id="fig:011" style="width:70.0%" alt="chmod" /> {#fig:011}</p>
+</section>
+<section id="результаты" class="slide level1">
+<h1>Результаты</h1>
+<p>Я ознакомилась с файловой системой Linux,её структурой,именами и
+содержанием каталогов. Приобрела практические навыки по применению
+команд для работы с файлами и каталогами,по управлению процессами (и
+работами),по проверке использования диска и обслуживанию файловой
+системы</p>
+<h2 id="код-для-формата-pdf">Код для формата <code>pdf</code></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slide_level</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">aspectratio</span><span class="kw">:</span><span class="at"> </span><span class="dv">169</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">section-titles</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span><span class="kw">:</span><span class="at"> metropolis</span></span></code></pre></div>
+<h2 id="код-для-формата-html">Код для формата <code>html</code></h2>
+<ul>
+<li>Тема задаётся в файле <code>Makefile</code></li>
+</ul>
+<pre class="make"><code>REVEALJS_THEME = beige </code></pre>
+</section>
+    </div>
+  </div>
+
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fdist%2Freveal%2Ejs"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fnotes%2Fnotes%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fsearch%2Fsearch%2Ejs"></script>
+  <script src="data:text/plain;charset=UTF-8;charset=utf-8,Not%20found%3A%20%2Freveal%2Ejs%404%2E6%2E1%2F%2Fplugin%2Fzoom%2Fzoom%2Ejs"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
