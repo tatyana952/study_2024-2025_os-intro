@@ -1,7 +1,7 @@
 ---
 ## Front matter
 lang: ru-RU
-title: Текстовой редактор vi
+title: Текстовый редактор  vi
 subtitle: Дисциплина:Архитектура компьютера и операционные системы
 author:
   - Ванюшкина Т.В.
@@ -23,6 +23,7 @@ theme: metropolis
 header-includes:
  - \metroset{progressbar=frametitle,sectionpage=progressbar,numbering=fraction}
 ---
+
 # Информация
 
 ## Докладчик
