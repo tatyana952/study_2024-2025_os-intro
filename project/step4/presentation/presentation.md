@@ -7,7 +7,7 @@ author:
   - Ванюшкина Т.В.
 institute:
   - Российский университет дружбы народов, Москва, Россия
-date: 12 апреля 2025
+date: 1 мая 2025
 
 ## i18n babel
 babel-lang: russian
@@ -95,4 +95,3 @@ theme: metropolis
 ```make
 REVEALJS_THEME = beige 
 ```
-
